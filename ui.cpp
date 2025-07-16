@@ -2,8 +2,16 @@
 
 using namespace std;
 
-int pass, i,choice, action, ex, with, depo;
+int pass, bal,choice, action, ex, with, depo;
 bool running = true;
+
+struct Account
+{
+    int pin;
+    int balance;
+};
+
+
 
 int IntOnly(const string& s)
 {   
@@ -25,22 +33,24 @@ int IntOnly(const string& s)
 }
 
 int main()
-{
-    i = 0;
-    pass = 1234;
+{   
+    Account users[5];
+    users[0].pin = 1234;
+    users[0].balance = 500;
+    users[1].pin = 1000;
+    users[1].balance = 10;
+    users[2].pin = 2000;
+    users[2].balance = 20;
+    users[3].pin = 3000;
+    users[3].balance = 30;
+    users[4].pin = 4000;
+    users[4].balance = 40;
+ 
     while (true)
     {
         int pin = IntOnly("Enter your PIN");
         
-        if (pin == pass)
-        {
-            break;
-        }
-        else
-        {
-            cout << "Incorrect PIN. Try again" << endl;
-        }
-    }  
+        for (int i = 0; i < 5; i++)
         while (running == true)
         {
             cout << "Choose from the following options" << endl;
@@ -53,14 +63,14 @@ int main()
             if (choice == 1)
             {
                 with = IntOnly("Enter the amount you want to withdraw:");
-                if (with > i)
+                if (with > bal)
                 {
                     cout << "Insufficient balance" << endl;
                     continue;
                 }
                 else
                 {
-                    i -= with;
+                    bal -= with;
                     cout << "You have withdrawn " << with << endl;
                 }
                     
@@ -69,21 +79,18 @@ int main()
             else if (choice == 2)
             {
                 depo = IntOnly("Enter the amount you want to deposit:");
-                i += depo;
+                bal += depo;
                 cout << "You have deposited " << depo << endl;
             }
 
             else if (choice == 3)
             {
-                cout << "Your balance is " << i << endl;
+                cout << "Your balance is " << bal << endl;
             }
 
             else if (choice == 4)
             {
                 running = false;
             }
-        }
-        
-
-        
+        }      
 }
