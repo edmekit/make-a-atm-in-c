@@ -52,16 +52,23 @@ int main()
 
             if (choice == 1)
             {
-                cout << "Enter the amount you want to withdraw" << endl;
-                cin >> with;
-                i -= with;
-                cout << "You have withdrawn " << with << endl;    
+                with = IntOnly("Enter the amount you want to withdraw:");
+                if (with > i)
+                {
+                    cout << "Insufficient balance" << endl;
+                    continue;
+                }
+                else
+                {
+                    i -= with;
+                    cout << "You have withdrawn " << with << endl;
+                }
+                    
             }
 
             else if (choice == 2)
             {
-                cout << "Enter the amount you want to deposit" << endl;
-                cin >> depo;
+                depo = IntOnly("Enter the amount you want to deposit:");
                 i += depo;
                 cout << "You have deposited " << depo << endl;
             }
