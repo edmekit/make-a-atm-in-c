@@ -51,46 +51,60 @@ int main()
         int pin = IntOnly("Enter your PIN");
         
         for (int i = 0; i < 5; i++)
-        while (running == true)
         {
-            cout << "Choose from the following options" << endl;
-            cout << "1. Withdrawal" << endl;
-            cout << "2. Deposit" << endl;
-            cout << "3. Balance" << endl;
-            cout << "4. Exit" << endl;
-            cin >> choice;
-
-            if (choice == 1)
+            if (pin == users[i].pin)
             {
-                with = IntOnly("Enter the amount you want to withdraw:");
-                if (with > bal)
+                bal = users[i].balance;
+                break;
+            }
+            else
+            {
+                continue;
+            }
+        }
+
+            while (running == true)
+            {
+                cout << "Choose from the following options" << endl;
+                cout << "1. Withdrawal" << endl;
+                cout << "2. Deposit" << endl;
+                cout << "3. Balance" << endl;
+                cout << "4. Exit" << endl;
+                cin >> choice;
+
+                if (choice == 1)
                 {
-                    cout << "Insufficient balance" << endl;
-                    continue;
+                    with = IntOnly("Enter the amount you want to withdraw:");
+                    if (with > bal)
+                    {
+                        cout << "Insufficient balance" << endl;
+                        continue;
+                    }
+                    else
+                    {
+                        bal -= with;
+                        cout << "You have withdrawn " << with << endl;
+                    }
+                        
                 }
-                else
+
+                else if (choice == 2)
                 {
-                    bal -= with;
-                    cout << "You have withdrawn " << with << endl;
+                    depo = IntOnly("Enter the amount you want to deposit:");
+                    bal += depo;
+                    cout << "You have deposited " << depo << endl;
                 }
-                    
-            }
 
-            else if (choice == 2)
-            {
-                depo = IntOnly("Enter the amount you want to deposit:");
-                bal += depo;
-                cout << "You have deposited " << depo << endl;
-            }
+                else if (choice == 3)
+                {
+                    cout << "Your balance is " << bal << endl;
+                }
 
-            else if (choice == 3)
-            {
-                cout << "Your balance is " << bal << endl;
+                else if (choice == 4)
+                {
+                    running = false;
+                }
             }
+        }
+    }    
 
-            else if (choice == 4)
-            {
-                running = false;
-            }
-        }      
-}
