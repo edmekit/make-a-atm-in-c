@@ -2,7 +2,7 @@
 
 using namespace std;
 
-int pass, bal,choice, action, ex, with, depo;
+int pass, bal,choice, action, ex, with, depo, userIndex;
 bool running = true;
 
 struct Account
@@ -49,19 +49,25 @@ int main()
     while (true)
     {
         int pin = IntOnly("Enter your PIN");
+        userIndex = -1;
+
         
         for (int i = 0; i < 5; i++)
         {
             if (pin == users[i].pin)
             {
-                bal = users[i].balance;
+                userIndex = i;
                 break;
             }
-            else
-            {
-                continue;
-            }
         }
+
+        if (userIndex == -1)
+        {
+            cout << "Wrong PIN" << endl;
+            continue;
+        }
+
+        bal = users[userIndex].balance;
 
             while (running == true)
             {
@@ -102,9 +108,22 @@ int main()
 
                 else if (choice == 4)
                 {
-                    running = false;
+                    cout << "Are you sure?" << endl;
+                    cout << "1. Yes" << endl;
+                    cout << "2. No" << endl;
+                    cin >> ex;
+                    if (ex == 1)
+                    {
+                        break;
+                    }
+                    else if (ex == 2)
+                    {
+                        continue;
+                    }
                 }
             }
+        cout << "Thank you for banking with us" << endl; 
+        break;
         }
-    }    
+}
 
