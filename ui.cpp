@@ -2,7 +2,7 @@
 
 using namespace std;
 
-int pass, bal,choice, action, ex, with, depo, userIndex;
+int pin, bal,choice, act, ex, with, depo, userIndex;
 bool running = true;
 
 struct Account
@@ -15,7 +15,7 @@ struct Account
 
 int IntOnly(const string& s)
 {   
-    int act;
+    act;
     while (true)
     {
         cout << s << endl;
@@ -46,7 +46,7 @@ int main()
         cout << endl;
         cout << "Welcome to our bank" << endl;
         cout << endl;
-        int pin = IntOnly("Enter your PIN");
+        pin = IntOnly("Enter your PIN");
         userIndex = -1;
   
         for (int i = 0; i < 5; i++)
