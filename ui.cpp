@@ -2,7 +2,7 @@
 
 using namespace std;
 
-int pin, bal,choice, act, ex, with, depo, userIndex;
+int pin, bal,choice,ex, with, depo, userIndex;
 bool running = true;
 
 struct Account
@@ -15,7 +15,7 @@ struct Account
 
 int IntOnly(const string& s)
 {   
-    act;
+    int act;
     while (true)
     {
         cout << s << endl;
